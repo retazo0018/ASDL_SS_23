@@ -1,2 +1,4 @@
 code/data/
 code/utils/fairseq/
+code/src/__pycache__
+code/utils/__pycache__
