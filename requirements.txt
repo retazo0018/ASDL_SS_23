@@ -1,0 +1,11 @@
+accelerate==0.19.0
+fairseq==0.12.2
+jsonlines==3.1.0
+requests==2.31.0
+responses==0.18.0
+torch==1.13.1
+torchaudio==0.13.1
+torchvision==0.5.0
+tqdm==4.65.0
+transformers==4.28.0
+numpy==1.20.1
