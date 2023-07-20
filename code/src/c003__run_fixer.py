@@ -6,6 +6,7 @@ from utils.fairseq_utils import *
 parser = argparse.ArgumentParser()
 parser.add_argument('--round_name')
 parser.add_argument('--destdir_root', default='')
+parser.add_argument('--checkpoint_name')
 parser.add_argument('--gpu_ids', default='0', help='Comma separated list')
 args = parser.parse_args()
 args.gpu_ids = args.gpu_ids.split(",")
@@ -13,6 +14,7 @@ args.gpu_ids = args.gpu_ids.split(",")
 
 data_dir = Path('data')
 round_dir = data_dir/args.round_name
+checkpoint_name = args.checkpoint_name
 destdir_root = Path(args.destdir_root) if args.destdir_root else round_dir/'orig_bad'
 
 
@@ -23,7 +25,7 @@ for split in range(n_splits):
     destdir    = destdir_root/f'fairseq_preprocess__orig_bad.{split}'
     if os.path.exists(str(destdir)):
         continue
-    fairseq_preprocess(src='bad', tgt='good', workers=10, cpu=True,
+    fairseq_preprocess(src='bad', tgt='good', workers=20, cpu=True,
                           destdir  = str(destdir),
                           testpref = str(data_dir/f'orig_bad_code/orig.{split}'),
                           srcdict  = str(data_dir/'token_vocab.txt'),
@@ -32,7 +34,7 @@ for split in range(n_splits):
 
 #Run fixer
 model_dir  = round_dir/'model-fixer'
-model_path = model_dir/'checkpoint.pt'
+model_path = model_dir/checkpoint_name
 gpus = (args.gpu_ids * (n_splits//len(args.gpu_ids) +1))[:n_splits]
 use_Popen = (len(args.gpu_ids) > 1)
 ps = []

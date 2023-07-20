@@ -55,9 +55,10 @@ def generate_paired_data_from_fixer_preds_for_BIFI(pred_dir_prefix, pred_fname, 
     print ('seed', seed)
     np.random.seed(seed)
     np.random.shuffle(idxs_0); np.random.shuffle(idxs_0)
-    total_size = 30_000_000
+    #total_size = 30_000_000
+    total_size = 3000
     _0_data_repeats  = (total_size//3)//len(idxs_0) +1
-    new_data_repeats = (total_size*2//3)//new_data_size +1
+    new_data_repeats = (total_size*2//3)//(new_data_size +1)
     idxs_0 = (idxs_0 * _0_data_repeats)[:total_size//3]
     idxs_newdata = idxs_newdata * new_data_repeats
     print ('combining all data')

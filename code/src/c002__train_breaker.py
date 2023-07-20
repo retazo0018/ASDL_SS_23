@@ -5,9 +5,9 @@ from utils.fairseq_utils import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--round_name')
-parser.add_argument('--gpu_id', default='0')
+parser.add_argument('--gpu_id', default=None)
 parser.add_argument('--continue_from', default='', help='Path of the model to continue from')
-parser.add_argument('--max_epoch', type=int, default=3)
+parser.add_argument('--max_epoch', type=int, default=2)
 args = parser.parse_args()
 
 
@@ -26,23 +26,23 @@ fairseq_preprocess(src='good', tgt='bad', workers=20, cpu=True,
 #Train
 save_dir = round_dir/'model-breaker'; save_dir.mkdir(exist_ok=True)
 if not args.continue_from:
-    fairseq_train(str(fairseq_dir), str(save_dir), str(save_dir/'train.log.txt'),
+    fairseq_train(args.gpu_id, str(fairseq_dir), str(save_dir), str(save_dir/'train.log.txt'),
                     src='good', tgt='bad', cpu=True,
                     criterion='label_smoothed_cross_entropy', label_smoothing=0.1,
-                    lr=1e-3, warmup_init_lr=1e-4, memory_efficient_fp16=True,
+                    lr=1e-3, warmup_init_lr=1e-4, memory_efficient_fp16=False,
                     encoder_layers=4, decoder_layers=4, encoder_embed_dim=256, decoder_embed_dim=256,
                     encoder_ffn_embed_dim=1024, decoder_ffn_embed_dim=1024,
                     max_tokens=13500, update_freq=2,
-                    max_epoch=args.max_epoch, save_interval_updates=10000, num_workers=4,
-                ) #
+                    max_epoch=args.max_epoch, save_interval_updates=10000, num_workers=0,
+                ) 
 else:
-    fairseq_train(str(fairseq_dir), str(save_dir), str(save_dir/'train.log.txt'),
+    fairseq_train(args.gpu_id, str(fairseq_dir), str(save_dir), str(save_dir/'train.log.txt'),
                     src='good', tgt='bad', cpu=True,
                     criterion='label_smoothed_cross_entropy', label_smoothing=0.1,
-                    lr=1e-3, warmup_init_lr=1e-4, memory_efficient_fp16=True,
+                    lr=1e-3, warmup_init_lr=1e-4, memory_efficient_fp16=False,
                     encoder_layers=4, decoder_layers=4, encoder_embed_dim=256, decoder_embed_dim=256,
                     encoder_ffn_embed_dim=1024, decoder_ffn_embed_dim=1024,
                     max_tokens=13500, update_freq=2,
-                    max_epoch=args.max_epoch, save_interval_updates=10000, num_workers=4,
+                    max_epoch=args.max_epoch, save_interval_updates=10000, num_workers=0,
                     restore_file=args.continue_from, reset=True,
-                ) #
+                ) 

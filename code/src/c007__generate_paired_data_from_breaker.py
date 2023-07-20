@@ -55,7 +55,9 @@ def eval_one_split(pred_dir_prefix, split, pred_fname, goods, n_workers=80):
     for j in range(len(preds)):
         progid = progids[j]
         preds[j]['progid'] = progid
-        code_toks_raw = goods[progid].split()
+        # import pdb; pdb.set_trace()
+        # code_toks_raw = goods[progid].split()
+        code_toks_raw = goods[progid]['code_toks_joined']
         preds[j]['code_toks_raw'] = code_toks_raw
         preds[j]['anonymize_dict'] = None
     #
@@ -144,11 +146,11 @@ def generate_paired_data_from_breaker_preds_for_BIFI(pred_dir_prefix, pred_fname
     assert len(set(train_data_0['id']).intersection(set(train_data['id']))) == 0
     #
     total_size = int(new_data_size * 2)
-    _0_data_repeats  = (total_size//4)//len(idxs_0) +1
-    _1_data_repeats  = (total_size*2//4)//len(idxs_1) +1
-    new_data_p_repeats = (total_size*1//4//3)//len(idxs_newdata_p) +1
-    new_data_i_repeats = (total_size*1//4//3)//len(idxs_newdata_i) +1
-    new_data_s_repeats = (total_size*1//4//3)//len(idxs_newdata_s) +1
+    _0_data_repeats  = (total_size//4)//(len(idxs_0) +1)
+    _1_data_repeats  = (total_size*2//4)//(len(idxs_1) +1)
+    new_data_p_repeats = (total_size*1//4//3)//(len(idxs_newdata_p) +1)
+    new_data_i_repeats = (total_size*1//4//3)//(len(idxs_newdata_i) +1)
+    new_data_s_repeats = (total_size*1//4//3)//(len(idxs_newdata_s) +1)
     idxs_0 = (idxs_0 * _0_data_repeats)[:total_size//4]
     idxs_1 = (idxs_1 * _1_data_repeats)[:total_size*2//4]
     idxs_newdata_p = (idxs_newdata_p * new_data_p_repeats)[:total_size*1//4//3]

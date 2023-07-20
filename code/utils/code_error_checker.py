@@ -42,7 +42,7 @@ def check_paren_error(code_toks_raw):
             if parenlev[0] < 0 or parenlev[1] < 0 or parenlev[2] < 0:
                 err_obj = {
                             'msg': 'unbalanced (){}[]',
-                            'msg_detailed': 'extra right parenthesis',
+                            #'msg_detailed': 'extra right parenthesis',
                           }
                 return err_obj
             tidx += 1
@@ -51,7 +51,7 @@ def check_paren_error(code_toks_raw):
         paren_open_tidx_earliest = min([_ for _ in paren_open_tidx if _ is not None])
         err_obj = {
                     'msg': 'unbalanced (){}[]',
-                    'msg_detailed': 'left parenthesis is not closed',
+                    #'msg_detailed': 'left parenthesis is not closed',
                   }
         return err_obj
     #No error

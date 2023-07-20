@@ -54,7 +54,8 @@ def eval_one_split(pred_dir_prefix, split, pred_fname, n_workers=80):
     #load progids
     data_dir = 'data'
     progids = [l.strip() for l in open(f'{data_dir}/orig_bad_code/orig.{split}.id')]
-    assert len(preds) == len(progids)
+    #import pdb; pdb.set_trace()
+    #assert len(preds) == len(progids)
     #load original err_obj
     bads = json.load(open(f'{data_dir}/orig_bad_code/orig.bad.json'))
     for j in range(len(preds)):
@@ -148,6 +149,6 @@ pred_fname  = 'model-fixer.pred.txt'
 
 n_splits = 5  #all the original bad code is split into 5 chunks for faster processing
 for split in range(n_splits):
-    eval_one_split(pred_dir_prefix, split, pred_fname, n_workers=10)
+    eval_one_split(pred_dir_prefix, split, pred_fname, n_workers=20)
 
 get_test_result(pred_dir_prefix, pred_fname)

@@ -30,7 +30,7 @@ for split in range(n_splits):
                           only_source=True )
     os.system('cp {} {}'.format(data_dir/'token_vocab.txt', destdir/'dict.bad.txt'))
 
-#Run breaker
+# Run breaker
 model_dir  = round_dir/'model-breaker'
 model_path = model_dir/'checkpoint.pt'
 gpus = (args.gpu_ids * (n_splits//len(args.gpu_ids) +1))[:n_splits]

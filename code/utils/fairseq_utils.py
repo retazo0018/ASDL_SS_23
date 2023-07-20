@@ -51,7 +51,7 @@ def fairseq_train(GPUs, preprocess_dir, save_dir, logfile, src, tgt, model='tran
                --criterion {criterion} \
                --optimizer adam --adam-betas '(0.9, 0.98)' --clip-norm 1 \
                --lr-scheduler inverse_sqrt --warmup-updates {warmup_updates} --warmup-init-lr {warmup_init_lr} \
-               --lr {lr} --min-lr {min_lr} \
+               --lr {lr} \
                --max-tokens {max_tokens} \
                --update-freq {update_freq} \
                --max-epoch {max_epoch} --save-interval {save_interval} --save-dir {save_dir} "

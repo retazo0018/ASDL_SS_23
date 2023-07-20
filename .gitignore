@@ -1,4 +1,11 @@
-code/data/
+code/data/bifi
+code/data/bk
+code/data/round0/
+code/data/round1-FixerOnly/
+code/data/round2-FixerOnly/
+code/data/pypibugs/pypi-bugs-tmp.jsonl
 code/utils/fairseq/
 code/src/__pycache__
 code/utils/__pycache__
+code/scripts/__pycache__
+code/tmp/
