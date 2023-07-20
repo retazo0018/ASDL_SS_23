@@ -1,5 +1,5 @@
-# Project work for the course "Analysing Software using Deep Learning" at the University of Stuttgart
+# Project work for the course "Analysing Software using Deep Learning" at the University of Stuttgart by Ashwin Murali
 
-## The code found here was modified from the repository: https://github.com/michiyasunaga/BIFI
+### The code found here was modified from the repository: https://github.com/michiyasunaga/BIFI
 
-### Please run `./src/run-PyPI-FixerOnly.sh` from the base directory.
+#### Please run `./src/run-PyPI-FixerOnly.sh` from the base directory.
