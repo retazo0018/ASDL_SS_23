@@ -1,6 +1,11 @@
 code/data/bifi
 code/data/bk
-code/data/round0/
+code/data/round0/data_paired/
+code/data/round0/orig_bad/
+code/data/round0/model-fixer/checkpoint_last.pt
+code/data/round0/model-fixer/checkpoint_best.pt
+code/data/round0/model-fixer/checkpoint1.pt
+code/data/round0/model-fixer/train.log.txt
 code/data/round1-FixerOnly/
 code/data/round2-FixerOnly/
 code/data/pypibugs/pypi-bugs-tmp.jsonl
@@ -12,3 +17,4 @@ code/tmp/
 code/docs/notes.docx
 code/docs/rough_draft.docx
 code/docs/Ashwin_Murali.zip
+code/docs/sc/
